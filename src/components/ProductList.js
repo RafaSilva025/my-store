@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useProducts } from '../hooks/useProducts'; 
 import useCart from '../hooks/useCart'; 
+import { motion } from 'framer-motion';
 
 const ProductList = () => {
   const { data, error, isLoading } = useProducts(1, 10, 'nome', 'ASC');
@@ -21,11 +22,11 @@ const ProductList = () => {
   return (
     <div>
       {data.products.map(product => (
-        <div key={product.id}>
+        <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <h2>{product.nome}</h2>
           <p>Preço: {product.preco}</p>
           <button onClick={() => addToCart(product)}>Add to Cart</button>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
