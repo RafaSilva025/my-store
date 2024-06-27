@@ -1,10 +1,19 @@
 import React from 'react';
-import { useProducts } from '../hooks/useProducts'; // Ajuste o caminho conforme necessário
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { useProducts } from '../hooks/useProducts';
 
 const ProductList = () => {
   const { data, error, isLoading } = useProducts(1, 10, 'nome', 'ASC');
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div>
+        <Skeleton height={30} count={5} />
+      </div>
+    );
+  }
+
   if (error) return <div>Error: {error.message}</div>;
 
   return (
