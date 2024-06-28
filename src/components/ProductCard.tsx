@@ -1,8 +1,9 @@
-// components/ProductCard.tsx
+// src/components/ProductCard.tsx
+"use client";
+
 import React from 'react';
-import styled from 'styled-components';
 import { Product } from '../types/Product';
-import '../styles/ProductCard.module.scss'; // Importando os estilos SCSS
+import styles from '../styles/Home.module.scss';
 
 interface ProductCardProps {
   product: Product;
@@ -10,19 +11,12 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
-  const { id, name, price } = product;
-
-  const handleAddToCart = () => {
-    onAddToCart(product);
-  };
-
   return (
-    <div className="product-card">
-      <h3 className="product-name">{name}</h3>
-      <p className="product-price">R$ {price.toFixed(2)}</p>
-      <button className="add-to-cart" onClick={handleAddToCart}>
-        Adicionar ao Carrinho
-      </button>
+    <div className={styles['product-card']}>
+      <img src={product.image} alt={product.name} />
+      <h3>{product.name}</h3>
+      <p>{product.description}</p>
+      <button onClick={() => onAddToCart(product)}>Adicionar ao Carrinho</button>
     </div>
   );
 };

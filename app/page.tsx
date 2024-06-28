@@ -1,11 +1,12 @@
-'use client'
-// pages/index.tsx
+// app/page.tsx
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from '../src/components/ProductCard';
 import Cart from '../src/components/Cart';
 import { Product } from '../src/types/Product';
-// Importando os estilos SCSS
+import styles from '../src/styles/Home.module.scss';
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,7 +18,7 @@ const Home: React.FC = () => {
         const response = await axios.get('https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/produtos', {
           params: {
             pagina: 1,
-            linhas: 10,
+            linhas: 8,  // Limitando para 8 produtos
             ordenarPor: 'nome',
             ordem: 'DESC',
           },
@@ -36,12 +37,14 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="home-container">
-      <div className="product-container">
+    <div className={styles['home-container']}>
+      <div className={styles['product-container']}>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
         ))}
       </div>
+      <Cart cart={cart} />
+      <Cart cart={cart} />
       <Cart cart={cart} />
     </div>
   );
