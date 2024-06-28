@@ -1,21 +1,24 @@
+// components/Cart.tsx
 import React from 'react';
-import { useCartStore } from '../store/cartStore';
+import { Product } from '../types/Product';
+import '../styles/Cart.module.scss'; // Importando os estilos SCSS
 
-const Cart = () => {
-  const { cart, increaseQuantity, decreaseQuantity } = useCartStore();
+interface CartProps {
+  cart: Product[];
+}
 
+const Cart: React.FC<CartProps> = ({ cart }) => {
   return (
-    <div>
-      <h2>Cart</h2>
-      {cart.map((item) => (
-        <div key={item.id}>
-          <h3>{item.name}</h3>
-          <p>{item.price}</p>
-          <p>Quantity: {item.quantity}</p>
-          <button onClick={() => increaseQuantity(item.id)}>+</button>
-          <button onClick={() => decreaseQuantity(item.id)}>-</button>
-        </div>
-      ))}
+    <div className="cart-container">
+      <h2 className="cart-title">Carrinho de Compras</h2>
+      <div className="cart-items">
+        {cart.map((product) => (
+          <div key={product.id} className="cart-item">
+            <span className="product-name">{product.name}</span>
+            <span className="product-price">R$ {product.price.toFixed(2)}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

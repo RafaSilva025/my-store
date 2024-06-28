@@ -1,0 +1,32 @@
+// styles/Cart.module.scss
+.cart-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    width: 300px;
+  
+    .cart-title {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+  
+    .cart-items {
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding: 8px 0;
+  
+        .product-name {
+          flex: 1;
+        }
+  
+        .product-price {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+  
