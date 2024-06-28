@@ -1,32 +1,21 @@
-// components/Cart.tsx
 import React from 'react';
+import { useCartStore } from '../store/cartStore';
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-};
+const Cart = () => {
+  const { cart, increaseQuantity, decreaseQuantity } = useCartStore();
 
-type CartProps = {
-  products: Product[];
-  onIncreaseQuantity: (id: number) => void;
-  onDecreaseQuantity: (id: number) => void;
-};
-
-const Cart: React.FC<CartProps> = ({ products, onIncreaseQuantity, onDecreaseQuantity }) => {
   return (
     <div>
-      <h2>Carrinho de Compras</h2>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            {product.name} - {product.price} - Quantidade: {product.quantity}
-            <button onClick={() => onIncreaseQuantity(product.id)}>+</button>
-            <button onClick={() => onDecreaseQuantity(product.id)}>-</button>
-          </li>
-        ))}
-      </ul>
+      <h2>Cart</h2>
+      {cart.map((item) => (
+        <div key={item.id}>
+          <h3>{item.name}</h3>
+          <p>{item.price}</p>
+          <p>Quantity: {item.quantity}</p>
+          <button onClick={() => increaseQuantity(item.id)}>+</button>
+          <button onClick={() => decreaseQuantity(item.id)}>-</button>
+        </div>
+      ))}
     </div>
   );
 };

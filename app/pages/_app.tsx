@@ -1,6 +1,6 @@
 // pages/_app.tsx
 import { AppProps } from 'next/app';
-import GlobalStyle from '../src/styles/globalStyles';
+import GlobalStyle from '../../src/styles/globalStyles';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

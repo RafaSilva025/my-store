@@ -8,7 +8,11 @@ type Product = {
   price: number;
 };
 
-const ProductList: React.FC = () => {
+type ProductListProps = {
+  addToCart: (product: Product) => void;
+};
+
+const ProductList: React.FC<ProductListProps> = ({ addToCart }) => {
   const { data, error, isLoading } = useProducts();
 
   if (isLoading) {
@@ -26,6 +30,7 @@ const ProductList: React.FC = () => {
         {data?.map(product => (
           <li key={product.id}>
             {product.name} - {product.price}
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
           </li>
         ))}
       </ul>
