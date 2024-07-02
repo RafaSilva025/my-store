@@ -30,6 +30,7 @@ const Home: React.FC = () => {
     setCart([...cart, product]);
   };
 
+  
   return (
     <Container>
       <ProductContainer>
