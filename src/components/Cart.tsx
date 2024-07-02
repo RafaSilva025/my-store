@@ -11,7 +11,7 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ cart }) => {
   return (
     <div>
-      <h2>Carrinho</h2>
+      <h2>mochila</h2>
       <ul>
         {cart.map((product, index) => (
           <li key={index}>{product.name}</li>
